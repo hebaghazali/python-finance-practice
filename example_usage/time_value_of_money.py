@@ -1,4 +1,4 @@
-from finance.calculations import (calculate_future_value_compounded, cumulative_growth,
+from src.time_value_of_money import (calculate_future_value_compounded, cumulative_growth,
                                   calculate_discount_factor, calculate_future_value, calculate_present_value)
 
 # Usage example
