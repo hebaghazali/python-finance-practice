@@ -45,3 +45,38 @@ def calculate_eaa(npv, discount_rate, periods):
     annuity_factor = discount_rate / (1 - (1 + discount_rate) ** -periods)
     eaa = npv / annuity_factor
     return eaa
+
+
+def calculate_wacc(cost_of_equity, cost_of_debt, weight_of_equity, weight_of_debt, tax_rate):
+    """
+    Calculate the Weighted Average Cost of Capital (WACC) with tax rate.
+
+    Parameters:
+        cost_of_equity (float): Cost of equity (Ke).
+        cost_of_debt (float): Cost of debt (Kd).
+        weight_of_equity (float): Weight of equity (We).
+        weight_of_debt (float): Weight of debt (Wd).
+        tax_rate (float): Corporate tax rate (expressed as a decimal).
+
+    Returns:
+        float: The Weighted Average Cost of Capital (WACC) with tax rate.
+    """
+    wacc = ((cost_of_equity * weight_of_equity) 
+            + ((cost_of_debt * (1 - tax_rate)) * weight_of_debt))
+    return wacc
+
+
+def evaluate_investment_project(cash_flows, wacc):
+    """
+    Evaluate an investment project using the Net Present Value (NPV) with WACC.
+
+    Parameters:
+        cash_flows (list): List of cash flows for each period.
+        wacc (float): Weighted Average Cost of Capital (WACC).
+
+    Returns:
+        float: The Net Present Value (NPV) of the investment project.
+    """
+    # Calculate NPV using WACC as the discount rate
+    npv = calculate_npv(cash_flows, wacc)
+    return npv
